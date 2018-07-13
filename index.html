@@ -43,6 +43,10 @@
                 <button type="button" class="btn bg-dark" id="submit">Report</button>
             </div>
 
+            <div id="floating-panel">
+                <button onclick="toggleHeatmap()">Toggle Heatmap</button>
+            </div>
+            
             <div id="googleMap"></div>
 
             <div class="card">
@@ -71,9 +75,8 @@
 
             <script src="mapLogic.js"></script>
 
-            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAYzoIRl5Tr3t23pkaQYWe2KVKYO0FE4ck&callback=initMap"
+            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAYzoIRl5Tr3t23pkaQYWe2KVKYO0FE4ck&callback=initMap&libraries=visualization"
             async defer></script>
-
 
     </body>
 </html>
