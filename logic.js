@@ -145,7 +145,7 @@ var alertSound = new Audio('167337__willy-ineedthatapp-com__pup-alert.mp3');
 //Create radius takes y coordinates and x coordinates from Firebase...
 function createRadius(x, y){
         //Watches your location...
-        navigator.geolocation.watchPosition(function(position){
+        navigator.geolocation.getCurrentPosition(function(position){
             var currentLat = position.coords.latitude;
             var currentLng = position.coords.longitude;
             //Creates a ~three mile radius...
@@ -161,7 +161,7 @@ function createRadius(x, y){
                 increment = increment + 1;
                 //console.log("Your longitude is proximal to a danger zone.")
             } 
-            console.log("You are proximal to", increment, "ping(s).");
+            //console.log("You are proximal to", increment, "ping(s).");
             $("#pins").text(increment);
             if (increment > 0) {
                 alertSound.play();
@@ -204,6 +204,8 @@ function createRadius(x, y){
             }
         }
     }
+
+    console.log(coordinateArray);
     
     setInterval(function () {
         newValues();
@@ -211,5 +213,6 @@ function createRadius(x, y){
         for (var j = 0; j < coordinateArray.length; j++) {
             createRadius(coordinateArray[j].xCoordinate, coordinateArray[j].yCoordinate);
         }
-        console.log("Pings close to your location: ", increment);
+        //console.log("Pings close to your location: ", increment);
+        increment = 0;
     }, 3000);
