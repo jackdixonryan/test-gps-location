@@ -182,7 +182,7 @@ navigator.geolocation.watchPosition(function(position) {
         } else if(data.weather[0].description === "hail"){
             $("#weather").html("<i class='fas fa-cloud'>        Warning! Hail Reported at Your Destination!</i>");
         }else {
-            $("#weather").append(data.weather[0].main);
+            $("#weather").html(data.weather[0].main);
         }
     });
 });
