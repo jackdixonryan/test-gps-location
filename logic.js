@@ -139,25 +139,51 @@ database.ref().on("child_added", function(results) {
     
     //console.log(coordinateArray);
 
-    function gpc() {
-        console.log("gpc ran.");
-        var pinsCloseby = 0
-        for (j = 0; j < coordinateArray.length; j++) {
-            var highY = coordinateArray[j].yCoordinate + .01;
-            var lowY = coordinateArray[j].yCoordinate - .01;
-            var highX= coordinateArray[j].xCoordinate + .01;
-            var lowX= coordinateArray[j].xCoordinate - .01;
-        }
-        navigator.geolocation.watchPosition(function(positionB) {
-            var positionBLat = positionB.coords.latitude;
-            var positionBLng = positionB.coords.longitude;
-            if ((positionBLng < highY && positionBLng > lowY) || (positionBLat < highX && positionBLat > lowX)) {
-                pinsCloseby = pinsCloseby + 1;
+var increment = 0;
+var alertSound = new Audio('167337__willy-ineedthatapp-com__pup-alert.mp3');
+
+//Create radius takes y coordinates and x coordinates from Firebase...
+function createRadius(x, y){
+        //Watches your location...
+        navigator.geolocation.watchPosition(function(position){
+            var currentLat = position.coords.latitude;
+            var currentLng = position.coords.longitude;
+            //Creates a ~three mile radius...
+            var latPlus = x + .00001;
+            var latMinus = x - .00001;
+            var lngPlus = y + .00001;
+            var lngMinus = y - .00001;
+            //And lets you know if you stray into that radius.
+            if (currentLat > latMinus && currentLat < latPlus) {
+                //console.log("Your latitude is proximal to a danger zone.")
+                increment = increment + 1;
+            } else if (currentLng > lngMinus && currentLng < lngPlus) {
+                increment = increment + 1;
+                //console.log("Your longitude is proximal to a danger zone.")
+            } 
+            console.log("You are proximal to", increment, "ping(s).");
+            $("#pins").text(increment);
+            if (increment > 0) {
+                alertSound.play();
             }
-            console.log("There are", pinsCloseby, "pins in your area.");
-            $("#pins").text(pinsCloseby);
         });
-    }
+}
+
+//Referencing Firebase and pushing lat lng values to the coordinate array. 
+function checkDatabase() {
+    console.log("check database ran.")
+    database.ref().on("child_added", function(results) {
+        var xVal = results.val().lat;
+        var yVal = results.val().lng;
+        var coordObject = {
+            xCoordinate: xVal,
+            yCoordinate: yVal
+        };
+        coordinateArray.push(coordObject); 
+        createRadius(xVal, yVal);
+    });
+}
+
     
     function proximityCheck() {
         for (i = 0; i <= coordinateArray.length; i++) {
@@ -184,5 +210,6 @@ database.ref().on("child_added", function(results) {
     setInterval(function () {
         newValues();
         currentDirection();
-        gpc();
+        checkDatabase();
+        increment = 0;
     }, 3000);
