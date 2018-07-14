@@ -1,14 +1,14 @@
 var coordinateArray = [];
 
-database.ref().on("child_added", function(results) {
-    //console.log(results.val().lat);
-    //console.log(results.val().lng);
-    var coordObject = {
-        xCoordinate: results.val().lat,
-        yCoordinate: results.val().lng
-    };
-    coordinateArray.push(coordObject); 
-});
+// database.ref().on("child_added", function(results) {
+//     //console.log(results.val().lat);
+//     //console.log(results.val().lng);
+//     var coordObject = {
+//         xCoordinate: results.val().lat,
+//         yCoordinate: results.val().lng
+//     };
+//     coordinateArray.push(coordObject); 
+// });
 
 //console.log("logic.js is trying to read:", coordinateArray);
     
@@ -170,7 +170,6 @@ function createRadius(x, y){
 }
 
 //Referencing Firebase and pushing lat lng values to the coordinate array. 
-    console.log("check database ran.")
     database.ref().on("child_added", function(results) {
         var xVal = results.val().lat;
         var yVal = results.val().lng;
@@ -179,7 +178,7 @@ function createRadius(x, y){
             yCoordinate: yVal
         };
         coordinateArray.push(coordObject); 
-        createRadius(xVal, yVal);
+        // createRadius(xVal, yVal);
     });
 
 
@@ -209,4 +208,8 @@ function createRadius(x, y){
     setInterval(function () {
         newValues();
         currentDirection();
+        for (var j = 0; j < coordinateArray.length; j++) {
+            createRadius(coordinateArray[j].xCoordinate, coordinateArray[j].yCoordinate);
+        }
+        console.log("Pings close to your location: ", increment);
     }, 3000);
