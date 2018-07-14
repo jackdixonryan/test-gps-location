@@ -181,8 +181,6 @@ navigator.geolocation.watchPosition(function(position) {
             $("#weather").html("<i class='fas fa-cloud'>        Hazardous Weather Predicted Along Your route</i>");
         } else if(data.weather[0].description === "hail"){
             $("#weather").html("<i class='fas fa-cloud'>        Warning! Hail Reported at Your Destination!</i>");
-        }else {
-            $("#weather").html(data.weather[0].main);
         }
     });
 });
