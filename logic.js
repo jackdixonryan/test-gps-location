@@ -170,7 +170,6 @@ function createRadius(x, y){
 }
 
 //Referencing Firebase and pushing lat lng values to the coordinate array. 
-function checkDatabase() {
     console.log("check database ran.")
     database.ref().on("child_added", function(results) {
         var xVal = results.val().lat;
@@ -182,7 +181,7 @@ function checkDatabase() {
         coordinateArray.push(coordObject); 
         createRadius(xVal, yVal);
     });
-}
+
 
     
     function proximityCheck() {
@@ -210,6 +209,4 @@ function checkDatabase() {
     setInterval(function () {
         newValues();
         currentDirection();
-        checkDatabase();
-        increment = 0;
     }, 3000);
