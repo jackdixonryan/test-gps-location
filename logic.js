@@ -27,8 +27,8 @@ database.ref().on("child_added", function(results) {
     //With map coordinates, the third decimal point measures a distance of 0.068 miles.
     //The functions are called every ten seconds. Therefore, the user must be traveling at least 0.068 miles every ten seconds, or about 24 miles per hour. 
     function showPosition(position) {
-        $("#location").html("Latitude: " + "<span id='xPos'>" + position.coords.latitude.toFixed(5) + "</span>" +
-            "<br>Longitude: " + "<span id='yPos'>" + position.coords.longitude.toFixed(5) + "</span>");
+        $("#location").html("Latitude: " + "<span id='xPos'>" + position.coords.latitude.toFixed(4) + "</span>" +
+            "<br>Longitude: " + "<span id='yPos'>" + position.coords.longitude.toFixed(4) + "</span>");
         //console.log("test");
     };
     
@@ -93,41 +93,41 @@ database.ref().on("child_added", function(results) {
     
     function currentDirection() {
     
-        if ((newX < oldX) && (newY === oldY)) {
+        if ((newX > oldX) && (newY === oldY)) {
             direction = "east";
-            $("#direction").html(direction);
+            $("#direction").html("<li>"+direction+"</li>");
             console.log(direction);
-        } else if ((newX > oldX) && (newY === oldY)) {
+        } else if ((newX < oldX) && (newY === oldY)) {
             direction = "west";
-            $("#direction").html(direction);
+            $("#direction").html("<li>"+direction+"</li>");
             console.log(direction);
         } else if ((newX === oldX) && (newY > oldY)) {
             direction = "north";
-            $("#direction").html(direction);
+            $("#direction").html("<li>"+direction+"</li>");
             console.log(direction);
         } else if ((newX === oldX) && (newY < oldY)) {
             direction = "south";
-            $("#direction").html(direction);
-            console.log(direction);
-        } else if ((newX < oldX) && (newY > oldY)) {
-            direction = "northeast";
-            $("#direction").html(direction);
-            console.log(direction);
-        } else if ((newX < oldX) && (newY < oldY)) {
-            direction = "southeast";
-            $("#direction").html(direction);
-            console.log(direction);
-        } else if ((newX > oldX) && (newY < oldY)) {
-            direction = "southwest";
-            $("#direction").html(direction);
+            $("#direction").html("<li>"+direction+"</li>");
             console.log(direction);
         } else if ((newX > oldX) && (newY > oldY)) {
+            direction = "northeast";
+            $("#direction").html("<li>"+direction+"</li>");
+            console.log(direction);
+        } else if ((newX > oldX) && (newY < oldY)) {
+            direction = "southeast";
+            $("#direction").html("<li>"+direction+"</li>");
+            console.log(direction);
+        } else if ((newX < oldX) && (newY < oldY)) {
+            direction = "southwest";
+            $("#direction").html("<li>"+direction+"</li>");
+            console.log(direction);
+        } else if ((newX < oldX) && (newY > oldY)) {
             direction = "northwest";
-            $("#direction").html(direction);
+            $("#direction").html("<li>"+direction+"</li>");
             console.log(direction);
         } else {
             direction = "Position has not changed"
-            $("#direction").html(direction);
+            $("#direction").html("<li>"+direction+"</li>");
             console.log(direction);
         }
     }
