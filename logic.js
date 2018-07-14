@@ -27,8 +27,8 @@ var coordinateArray = [];
     //With map coordinates, the third decimal point measures a distance of 0.068 miles.
     //The functions are called every ten seconds. Therefore, the user must be traveling at least 0.068 miles every ten seconds, or about 24 miles per hour. 
     function showPosition(position) {
-        $("#location").html("Latitude: " + "<span id='xPos'>" + position.coords.latitude.toFixed(4) + "</span>" +
-            "<br>Longitude: " + "<span id='yPos'>" + position.coords.longitude.toFixed(4) + "</span>");
+        $("#location").html("Latitude: " + "<span id='xPos'>" + position.coords.longitude.toFixed(4) + "</span>" +
+            "<br>Longitude: " + "<span id='yPos'>" + position.coords.latitude.toFixed(4) + "</span>");
         //console.log("test");
     };
     
@@ -107,22 +107,6 @@ var coordinateArray = [];
             $("#direction").append(oli);
         } else if ((newX === oldX) && (newY < oldY)) {
             direction = "south";
-            $(oli).text(direction);
-            $("#direction").append(oli);
-        } else if ((newX > oldX) && (newY > oldY)) {
-            direction = "northeast";
-            $(oli).text(direction);
-            $("#direction").append(oli);
-        } else if ((newX > oldX) && (newY < oldY)) {
-            direction = "southeast";
-            $(oli).text(direction);
-            $("#direction").append(oli);
-        } else if ((newX < oldX) && (newY < oldY)) {
-            direction = "southwest";
-            $(oli).text(direction);
-            $("#direction").append(oli);
-        } else if ((newX < oldX) && (newY > oldY)) {
-            direction = "northwest";
             $(oli).text(direction);
             $("#direction").append(oli);
         } else {

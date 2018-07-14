@@ -33,13 +33,13 @@ navigator.geolocation.watchPosition(function(position) {
     });
 });
 
-// var ref = database.ref();
-// var currentTime = Date.now();
-// var cutoff = currentTime - 12 * 60 * 60 * 1000;
-// var old = ref.orderByChild('timestamp').endAt(cutoff).limitToLast(1);
-// var listener = old.on('child_added', function(timestampResults){
-//     timestampResults.ref.remove();
-// });
+var ref = database.ref();
+var currentTime = Date.now();
+var cutoff = currentTime - 24 * 60 * 60 * 1000;
+var old = ref.orderByChild('timestamp').endAt(cutoff).limitToLast(1);
+var listener = old.on('child_added', function(timestampResults){
+    timestampResults.ref.remove();
+});
 
 //On clicking the report button...
 $("#submit").on("click", function(){
