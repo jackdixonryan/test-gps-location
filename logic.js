@@ -92,43 +92,43 @@ database.ref().on("child_added", function(results) {
     var direction;
     
     function currentDirection() {
-    
+        var oli = $("<li>");
         if ((newX > oldX) && (newY === oldY)) {
             direction = "east";
-            $("#direction").html("<li>"+direction+"</li>");
-            console.log(direction);
+            $(oli).text(direction);
+            $("#direction").append(oli);
         } else if ((newX < oldX) && (newY === oldY)) {
             direction = "west";
-            $("#direction").append("<li>"+direction+"</li>");
-            console.log(direction);
+            $(oli).text(direction);
+            $("#direction").append(oli);
         } else if ((newX === oldX) && (newY > oldY)) {
             direction = "north";
-            $("#direction").append("<li>"+direction+"</li>");
-            console.log(direction);
+            $(oli).text(direction);
+            $("#direction").append(oli);
         } else if ((newX === oldX) && (newY < oldY)) {
             direction = "south";
-            $("#direction").append("<li>"+direction+"</li>");
-            console.log(direction);
+            $(oli).text(direction);
+            $("#direction").append(oli);
         } else if ((newX > oldX) && (newY > oldY)) {
             direction = "northeast";
-            $("#direction").append("<li>"+direction+"</li>");
-            console.log(direction);
+            $(oli).text(direction);
+            $("#direction").append(oli);
         } else if ((newX > oldX) && (newY < oldY)) {
             direction = "southeast";
-            $("#direction").append("<li>"+direction+"</li>");
-            console.log(direction);
+            $(oli).text(direction);
+            $("#direction").append(oli);
         } else if ((newX < oldX) && (newY < oldY)) {
             direction = "southwest";
-            $("#direction").append("<li>"+direction+"</li>");
-            console.log(direction);
+            $(oli).text(direction);
+            $("#direction").append(oli);
         } else if ((newX < oldX) && (newY > oldY)) {
             direction = "northwest";
-            $("#direction").append("<li>"+direction+"</li>");
-            console.log(direction);
+            $(oli).text(direction);
+            $("#direction").append(oli);
         } else {
             direction = "Position has not changed"
-            $("#direction").append("<li>"+direction+"</li>");
-            console.log(direction);
+            $(oli).text(direction);
+            $("#direction").append(oli);
         }
     }
     
@@ -161,7 +161,6 @@ database.ref().on("child_added", function(results) {
     
     function proximityCheck() {
         for (i = 0; i <= coordinateArray.length; i++) {
-    
             if ((direction === "north") && ((newY < coordinateArray[i].yCoordinate) && (newY > (coordinateArray[i].yCoordinate - 0.001))) && (newX === coordinateArray[i].xCoordinate)) {
                 playAlert();
             } else if ((direction === "south") && ((newY > coordinateArray[i].yCoordinate) && (newY < (coordinateArray[i].yCoordinate + 0.001))) && (newX === coordinateArray[i].xCoordinate)) {
