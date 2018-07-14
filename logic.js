@@ -155,8 +155,8 @@ database.ref().on("child_added", function(results) {
                 pinsCloseby = pinsCloseby + 1;
             }
             console.log("There are", pinsCloseby, "pins in your area.");
+            $("#pins").text(pinsCloseby);
         });
-        $("#pins").text(pinsCloseby);
     }
     
     function proximityCheck() {
