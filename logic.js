@@ -99,35 +99,35 @@ database.ref().on("child_added", function(results) {
             console.log(direction);
         } else if ((newX < oldX) && (newY === oldY)) {
             direction = "west";
-            $("#direction").html("<li>"+direction+"</li>");
+            $("#direction").append("<li>"+direction+"</li>");
             console.log(direction);
         } else if ((newX === oldX) && (newY > oldY)) {
             direction = "north";
-            $("#direction").html("<li>"+direction+"</li>");
+            $("#direction").append("<li>"+direction+"</li>");
             console.log(direction);
         } else if ((newX === oldX) && (newY < oldY)) {
             direction = "south";
-            $("#direction").html("<li>"+direction+"</li>");
+            $("#direction").append("<li>"+direction+"</li>");
             console.log(direction);
         } else if ((newX > oldX) && (newY > oldY)) {
             direction = "northeast";
-            $("#direction").html("<li>"+direction+"</li>");
+            $("#direction").append("<li>"+direction+"</li>");
             console.log(direction);
         } else if ((newX > oldX) && (newY < oldY)) {
             direction = "southeast";
-            $("#direction").html("<li>"+direction+"</li>");
+            $("#direction").append("<li>"+direction+"</li>");
             console.log(direction);
         } else if ((newX < oldX) && (newY < oldY)) {
             direction = "southwest";
-            $("#direction").html("<li>"+direction+"</li>");
+            $("#direction").append("<li>"+direction+"</li>");
             console.log(direction);
         } else if ((newX < oldX) && (newY > oldY)) {
             direction = "northwest";
-            $("#direction").html("<li>"+direction+"</li>");
+            $("#direction").append("<li>"+direction+"</li>");
             console.log(direction);
         } else {
             direction = "Position has not changed"
-            $("#direction").html("<li>"+direction+"</li>");
+            $("#direction").append("<li>"+direction+"</li>");
             console.log(direction);
         }
     }
@@ -138,6 +138,26 @@ database.ref().on("child_added", function(results) {
     //through an array of coordinates. The for-loop functon can be called using a setInterval.
     
     //console.log(coordinateArray);
+
+    function gpc() {
+        console.log("gpc ran.");
+        var pinsCloseby = 0
+        for (j = 0; j < coordinateArray.length; j++) {
+            var highY = coordinateArray[j].yCoordinate + .01;
+            var lowY = coordinateArray[j].yCoordinate - .01;
+            var highX= coordinateArray[j].xCoordinate + .01;
+            var lowX= coordinateArray[j].xCoordinate - .01;
+        }
+        navigator.geolocation.watchPosition(function(positionB) {
+            var positionBLat = positionB.coords.latitude;
+            var positionBLng = positionB.coords.longitude;
+            if ((positionBLng < highY && positionBLng > lowY) || (positionBLat < highX && positionBLat > lowX)) {
+                pinsCloseby = pinsCloseby + 1;
+            }
+            console.log("There are", pinsCloseby, "pins in your area.");
+        });
+        $("#pins").text(pinsCloseby);
+    }
     
     function proximityCheck() {
         for (i = 0; i <= coordinateArray.length; i++) {
@@ -165,5 +185,5 @@ database.ref().on("child_added", function(results) {
     setInterval(function () {
         newValues();
         currentDirection();
-        proximityCheck();
+        gpc();
     }, 3000);
