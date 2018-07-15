@@ -20,6 +20,7 @@
     height: 500px;
     margin: 10px;
     float: left;
+    overflow: auto;
 }
 
 .jumbotron {
@@ -112,10 +113,8 @@
         text-align: center;
     }
 
-    .col-4 {
-        display: inline-block;
-        float: left;
-        clear: both;
+    .warning-card {
+        padding: 0;
     }
 
 }
