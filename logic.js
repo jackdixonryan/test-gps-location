@@ -92,25 +92,25 @@ var coordinateArray = [];
     var direction;
     
     function currentDirection() {
-        var oli = $("<li>");
-        if ((newX > oldX) && (newY === oldY)) {
-            direction = "east";
+        var oli = $("<h4>");
+        if ((newX < oldX) && (newY === oldY)) {
+            direction = "E";
             $(oli).text(direction);
             $("#direction").append(oli);
-        } else if ((newX < oldX) && (newY === oldY)) {
-            direction = "west";
+        } else if ((newX > oldX) && (newY === oldY)) {
+            direction = "W";
             $(oli).text(direction);
             $("#direction").append(oli);
         } else if ((newX === oldX) && (newY > oldY)) {
-            direction = "north";
+            direction = "N";
             $(oli).text(direction);
             $("#direction").append(oli);
         } else if ((newX === oldX) && (newY < oldY)) {
-            direction = "south";
+            direction = "S";
             $(oli).text(direction);
             $("#direction").append(oli);
         } else {
-            direction = "Position has not changed"
+            direction = "--"
             $(oli).text(direction);
             $("#direction").append(oli);
         }
@@ -146,7 +146,7 @@ function createRadius(x, y){
                 //console.log("Your longitude is proximal to a danger zone.")
             } 
             //console.log("You are proximal to", increment, "ping(s).");
-            $("#pins").text(increment);
+            $("#ping").text(increment);
             if (increment > 0) {
                 alertSound.play();
             }

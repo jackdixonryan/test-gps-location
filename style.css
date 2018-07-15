@@ -3,6 +3,10 @@
     margin: 10px;
 }
 
+#floating-panel{
+    clear: both;
+}
+
 #googleMap {
     margin: 10px;
     float: left;
@@ -11,7 +15,7 @@
     height:400px;
 }
 
-.card {
+.warning-card {
     width: 30%;
     height: 500px;
     margin: 10px;
@@ -22,7 +26,7 @@
     clear: both;
 }
 
-button {
+#submit {
     margin-left: 10px;
 }
 
@@ -30,7 +34,7 @@ button {
     height: 50px;
 }
 
-.card .card-title {
+.warning-card .card-title {
     margin: 13px;
     text-decoration: underline;
     text-decoration-color: 
@@ -51,6 +55,30 @@ button {
     text-align: center;
 }
 
+.info {
+    width: 40%;
+    margin: 5%;
+    padding: 10px;
+    float: left;
+}
+
+#floating-panel {
+    margin-left: 10px;
+}
+
+.methodology {
+    margin: 10px;
+    padding: 10px;
+}
+
+#methodology-jumbo {
+    text-align: center;
+}
+
+#contact-jumbo {
+    text-align: center;
+}
+
 @media screen and (max-width: 400px) {
     * {
         text-align: center;
@@ -62,11 +90,15 @@ button {
     }
 
     #googleMap {
-        width: 90%;
+        margin: 0;
+        padding: 0;
+        width: 100%;
         float: none;
+        margin-top: 10px;
+        margin-bottom: 5px;
     }
 
-    .card {
+    .warning-card {
         float: none;
         width: 90%;
     }
@@ -79,4 +111,11 @@ button {
     nav {
         text-align: center;
     }
+
+    .col-4 {
+        display: inline-block;
+        float: left;
+        clear: both;
+    }
+
 }
