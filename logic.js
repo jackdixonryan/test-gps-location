@@ -40,6 +40,8 @@ var coordinateArray = [];
     var newY = $("#yPos").html();
     //console.log("newY is " + newY);
     var oldY;
+    var diffX;
+    var diffY;
     
     function newValues() {
     
@@ -92,15 +94,15 @@ var coordinateArray = [];
     var direction;
     
     function currentDirection() {
-        var diffX = newX - oldX;
-        var diffY = newY - oldY;
+        diffX = newX - oldX;
+        diffY = newY - oldY;
         //in essence: rather than writing rhese long evaluative statements, 
         //just comparing the two values upfront, 
         //allows for more comparators between direction changes
         //so we can keep the four cardinal directions without 
         //the errors caused by the current logic. 
         
-        var oli = $("<h4>");
+        console.log(diffX, diffY);
 
         if (diffY > 0 && diffX > 0){
             direction = "NW";
@@ -233,4 +235,4 @@ function createRadius(x, y){
         }
         //console.log("Pings close to your location: ", increment);
         increment = 0;
-    }, 3000);
+    }, 5000);
