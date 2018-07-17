@@ -182,9 +182,10 @@ function createRadius(x, y){
                 //console.log("Your longitude is proximal to a danger zone.")
             } 
             //console.log("You are proximal to", increment, "ping(s).");
-            $("#ping").text(increment);
             if (increment > 0) {
                 alertSound.play();
+                $("#ping").addClass("text-danger");
+                $("#ping").text("!");
             }
         });
 }
@@ -235,4 +236,5 @@ function createRadius(x, y){
         }
         //console.log("Pings close to your location: ", increment);
         increment = 0;
+        $("#ping").text("");
     }, 5000);
