@@ -101,28 +101,54 @@ var coordinateArray = [];
         //the errors caused by the current logic. 
         
         var oli = $("<h4>");
-        if ((newX < oldX) && (newY === oldY)) {
-            direction = "E";
-            $(oli).text(direction);
-            $("#direction").append(oli);
-        } else if ((newX > oldX) && (newY === oldY)) {
+
+        if (diffY > 0 && diffX > 0){
+            direction = "NW";
+        } else if (diffY < 0 && diffX < 0){
+            direction = "SE";
+        } else if (diffY > 0 && diffX < 0) {
+            direction = "SW";
+        } else if (diffY < 0 && diffX > 0) {
+            direction = "NE";
+        } else if (diffY > 0) {
             direction = "W";
-            $(oli).text(direction);
-            $("#direction").append(oli);
-        } else if ((newX === oldX) && (newY > oldY)) {
+        } else if (diffY < 0) {
+            direction = "E";
+        } else if (diffX > 0) {
             direction = "N";
-            $(oli).text(direction);
-            $("#direction").append(oli);
-        } else if ((newX === oldX) && (newY < oldY)) {
+        } else if (diffX < 0) {
             direction = "S";
-            $(oli).text(direction);
-            $("#direction").append(oli);
         } else {
-            direction = "--"
-            $(oli).text(direction);
-            $("#direction").append(oli);
+            direction = "--";
         }
+
+        $("#direction").text(direction);
+        
     }
+
+
+    //     if ((newX < oldX) && (newY < oldY)) {
+    //         direction = "E";
+    //         $(oli).text(direction);
+    //         $("#direction").append(oli);
+    //     } else if ((newX > oldX) && (newY === oldY)) {
+    //         direction = "W";
+    //         $(oli).text(direction);
+    //         $("#direction").append(oli);
+    //     } else if ((newX === oldX) && (newY > oldY)) {
+    //         direction = "N";
+    //         $(oli).text(direction);
+    //         $("#direction").append(oli);
+    //     } else if ((newX === oldX) && (newY < oldY)) {
+    //         direction = "S";
+    //         $(oli).text(direction);
+    //         $("#direction").append(oli);
+    //     } else {
+    //         direction = "--"
+    //         $(oli).text(direction);
+    //         $("#direction").append(oli);
+    //     }
+    // }
     
     //This code looks for changes in the second decimal point, which, on a map, is accurate to 1.1 KM, or .68 miles.
     //Core idea: If user is moving along an axis, a point behind them will have either a higher or lower coordinate value. 
