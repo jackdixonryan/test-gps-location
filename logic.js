@@ -92,6 +92,14 @@ var coordinateArray = [];
     var direction;
     
     function currentDirection() {
+        var diffX = newX - oldX;
+        var diffY = newY - oldY;
+        //in essence: rather than writing rhese long evaluative statements, 
+        //just comparing the two values upfront, 
+        //allows for more comparators between direction changes
+        //so we can keep the four cardinal directions without 
+        //the errors caused by the current logic. 
+        
         var oli = $("<h4>");
         if ((newX < oldX) && (newY === oldY)) {
             direction = "E";
